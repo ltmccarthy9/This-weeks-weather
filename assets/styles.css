@@ -1,8 +1,56 @@
 header h1 {
     text-align: center;
 }
+header {
+    background-color: antiquewhite;
+}
 
 header p {
     text-align: center;
     font-size: 50px;
+}
+
+container {
+    display: flex;
+    height: 100%;
+    border-style: solid;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+section {
+    display: flex;
+    margin: 10px;
+    border-style: solid;
+    margin: 2%;
+}
+
+#city-search {
+    margin: 10px;
+    height: 5%;
+    font-size: 200%;
+}
+
+#search-section {
+    width: 25%;
+    height: 600px;
+    flex-direction: column;
+}
+
+#display {
+    width: 40%;
+    height: 600px;
+    flex-direction: column;
+    width: 80%;
+}
+#display-today{
+    height: 300px;
+}
+div h2 {
+    text-align: center;
+    font-size: 300%;
+}
+
+#display-week {
+    height: 300px;
 }
