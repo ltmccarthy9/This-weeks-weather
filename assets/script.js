@@ -57,30 +57,43 @@ var day2_hum = $("#day2-hum");
 var day3_hum = $("#day3-hum");
 var day4_hum = $("#day4-hum");
 var day5_hum = $("#day5-hum");
+
+var searchTextID = "";
+
+var urlRequest = "";
+
+var La = 0;
+var Lo = 0;
+var lat = "";
+var lon = "";
 //add user search into request url -> get latitude and longitude ----------
     function getLatLon() {
     searchText = $("#city-search").val();
-    $('<p>HEYYY</p>', {
-        id: searchText,
-    }).appendTo('#search-section');
-    var urlRequest = geoURL1 + searchText + geoURL2;
+    createCityRow(searchText);
+    urlRequest = geoURL1 + searchText + geoURL2;
     fetch(urlRequest).then(function(response){
         return response.json();
     }).then(function (data){
         console.log(data);
-        var La = data[0].lat;
-        var Lo = data[0].lon;
-        var lat = La.toString();
-        var lon = Lo.toString();
+        La = data[0].lat;
+        Lo = data[0].lon;
+        lat = La.toString();
+        lon = Lo.toString();
         latLon = "lat=" + lat + "&lon=" + lon;
         //console.log(latLon);
         getWeatherInfo(latLon);
-        //getUV(lat, lon);
     })    
     
 };
 //-------------------------------------
-
+// create a previously searched city row
+function createCityRow(search){
+    searchTextID = search;
+    $("<p></p>", {
+        id: searchTextID.replace(" ","-"),
+        class: "cities"
+    }).text(search).appendTo('#search-section');
+}
 // This function takes in the latitude and longitude and calls the weather api
 function getWeatherInfo(latLon){
     var weatherRequest = weatherURL1 + latLon + weatherURL2;
@@ -127,26 +140,115 @@ function displayWeather(){
     current_humidity.text("Humidity: " + todayHum + "%");
     current_wind_speed.text("Wind Speed: " + todayWind + " MPH");
     current_UV_index.text("UV Index: " + todayUV);
+    if (todayOutlook == "Clouds"){
+
+    }else if (todayOutlook == "Rain" || "Mist"){
+
+    }else if (todayOutlook == "Clear"){
+
+    }else if (todayOutlook == "snow"){
+
+    }else if (todayOutlook == "Thunderstorm"){
+
+    }
     //display weather for next 5 days
     //day 1
     day1_date.text(moment().add(1,'days').format("M/D/YY"));
     day1_temp.text("Temp: " + day1Temp + " °F" );
     day1_hum.text("Humidity: " + day1Humid + "%");
+    if (day1Outlook == "Clouds"){
+
+    }else if (day1Outlook == "Rain" || "Mist"){
+
+    }else if (day1Outlook == "Clear"){
+
+    }else if (day1Outlook == "snow"){
+
+    }else if (day1Outlook == "Thunderstorm"){
+        
+    }
     //day2
     day2_date.text(moment().add(2,'days').format("M/D/YY"));
     day2_temp.text("Temp: " + day2Temp + " °F" );
     day2_hum.text("Humidity: " + day2Humid + "%");
+    if (day2Outlook == "Clouds"){
+
+    }else if (day2Outlook == "Rain" || "Mist"){
+
+    }else if (day2Outlook == "Clear"){
+
+    }else if (day2Outlook == "snow"){
+
+    }else if (day2Outlook == "Thunderstorm"){
+        
+    }
     //day3
     day3_date.text(moment().add(3,'days').format("M/D/YY"));
     day3_temp.text("Temp: " + day3Temp + " °F" );
     day3_hum.text("Humidity: " + day3Humid + "%");
+    if (day3Outlook == "Clouds"){
+
+    }else if (day3Outlook == "Rain" || "Mist"){
+
+    }else if (day3Outlook == "Clear"){
+
+    }else if (day3Outlook == "snow"){
+
+    }else if (day3Outlook == "Thunderstorm"){
+        
+    }
     //day4
     day4_date.text(moment().add(4,'days').format("M/D/YY"));
     day4_temp.text("Temp: " + day4Temp + " °F" );
     day4_hum.text("Humidity: " + day4Humid + "%");
+    if (day4Outlook == "Clouds"){
+
+    }else if (day4Outlook == "Rain" || "Mist"){
+
+    }else if (day4Outlook == "Clear"){
+
+    }else if (day4Outlook == "snow"){
+
+    }else if (day4Outlook == "Thunderstorm"){
+        
+    }
     //day5
     day5_date.text(moment().add(5,'days').format("M/D/YY"));
     day5_temp.text("Temp: " + day5Temp + " °F" );
     day5_hum.text("Humidity: " + day5Humid + "%");
+    if (day5Outlook == "Clouds"){
+
+    }else if (day5Outlook == "Rain" || "Mist"){
+
+    }else if (day5Outlook == "Clear"){
+
+    }else if (day5Outlook == "snow"){
+
+    }else if (day5Outlook == "Thunderstorm"){
+        
+    }
 }
+
+$(document).on('click','.cities', function(){
+    var txt = $(this).attr("id");
+    getLatLonFromButton(txt);
+});
+
+
+function getLatLonFromButton(text) {
+    searchText = text;
+    var urlRequest2 = geoURL1 + searchText + geoURL2;
+    fetch(urlRequest2).then(function(response){
+        return response.json();
+    }).then(function (data){
+        console.log(data);
+        La = data[0].lat;
+        Lo = data[0].lon;
+        lat = La.toString();
+        lon = Lo.toString();
+        latLon = "lat=" + lat + "&lon=" + lon;
+        getWeatherInfo(latLon);
+    })    
+    
+};
 });

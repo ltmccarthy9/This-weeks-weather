@@ -41,9 +41,15 @@ section {
     height: 600px;
     flex-direction: column;
     width: 80%;
+    display: fle
 }
+
 #display-today{
     height: 300px;
+}
+#display-today p{
+    font-size: 120%;
+    margin: 2%;
 }
 div h2 {
     text-align: center;
@@ -88,4 +94,8 @@ div h2 {
 #search-section p {
     border-style:groove;
     margin: 2px;
+}
+
+.cities:hover {
+    box-shadow: 1px, 1px, black;
 }
