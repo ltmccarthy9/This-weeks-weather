@@ -21,7 +21,6 @@ container {
 section {
     display: flex;
     margin: 10px;
-    border-style: solid;
     margin: 2%;
 }
 
@@ -53,7 +52,6 @@ div h2 {
 
 #display-week {
     height: 300px;
-    border-style: solid;
     display: flex;
     justify-content: center;
 }
@@ -69,4 +67,8 @@ div h2 {
 
 .week-block h3 {
     text-align: center;
+}
+
+.week-block p {
+    padding: 1%;
 }

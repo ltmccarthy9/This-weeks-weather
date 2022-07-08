@@ -25,7 +25,7 @@ var latLon = "";
         var lat = La.toString();
         var lon = Lo.toString();
         latLon = "lat=" + lat + "&lon=" + lon;
-        console.log(latLon);
+        //console.log(latLon);
         getWeatherInfo(latLon);
         //getUV(lat, lon);
     })    
@@ -40,6 +40,12 @@ function getWeatherInfo(latLon){
         return response.json();
     }).then(function (data){
         console.log(data);
+        var todayTemp = data.current;
+        var todayHum = data.current.humidity;
+        var todayWind = data.current.wind_speed;
+        var todayUV = data.current.uvi;
+        var todayOutlook = data.current.weather[0].main;
+        console.log(todayOutlook);
     })
 }
 $("#submit-button").on("click", getLatLon);
