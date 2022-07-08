@@ -93,8 +93,7 @@ var icon2 = ".png";
         latLon = "lat=" + lat + "&lon=" + lon;
         //console.log(latLon);
         getWeatherInfo(latLon);
-    })    
-    
+    })       
 };
 //-------------------------------------
 // create a previously searched city row

@@ -20,9 +20,39 @@ speed and UV index on top of Temperature, conditions, and humidity.  The followi
 
 ## Deployed Link
 
+https://ltmccarthy9.github.io/This-weeks-weather/ <------------
+
+
 ## Code
 
+This is essential to grab latitude and longitude for the city searched by the user.
+```
+    function getLatLon() {
+    searchText = $("#city-search").val();
+    createCityRow(searchText);
+    urlRequest = geoURL1 + searchText + geoURL2;
+    fetch(urlRequest).then(function(response){
+        return response.json();
+    }).then(function (data){
+        console.log(data);
+        La = data[0].lat;
+        Lo = data[0].lon;
+        lat = La.toString();
+        lon = Lo.toString();
+        latLon = "lat=" + lat + "&lon=" + lon;
+        //console.log(latLon);
+        getWeatherInfo(latLon);
+    })       
+};
+
+```
 ## Demonstration
+
+![Alt Text](./assets/weather.gif)
+
+# Uses 
+
+This Week's Weather is perfect to be used as your weekly outlook for the weather so that you can plan your week accordingly.
 
 ## License
 
