@@ -72,3 +72,20 @@ div h2 {
 .week-block p {
     padding: 1%;
 }
+
+.lowUV {
+
+}
+
+.mediumUV {
+
+}
+
+.highUV {
+
+}
+
+#search-section p {
+    border-style:groove;
+    margin: 2px;
+}

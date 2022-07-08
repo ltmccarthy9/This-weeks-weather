@@ -60,6 +60,9 @@ var day5_hum = $("#day5-hum");
 //add user search into request url -> get latitude and longitude ----------
     function getLatLon() {
     searchText = $("#city-search").val();
+    $('<p>HEYYY</p>', {
+        id: searchText,
+    }).appendTo('#search-section');
     var urlRequest = geoURL1 + searchText + geoURL2;
     fetch(urlRequest).then(function(response){
         return response.json();
@@ -129,19 +132,19 @@ function displayWeather(){
     day1_date.text(moment().add(1,'days').format("M/D/YY"));
     day1_temp.text("Temp: " + day1Temp + " °F" );
     day1_hum.text("Humidity: " + day1Humid + "%");
-
+    //day2
     day2_date.text(moment().add(2,'days').format("M/D/YY"));
     day2_temp.text("Temp: " + day2Temp + " °F" );
     day2_hum.text("Humidity: " + day2Humid + "%");
-
+    //day3
     day3_date.text(moment().add(3,'days').format("M/D/YY"));
     day3_temp.text("Temp: " + day3Temp + " °F" );
     day3_hum.text("Humidity: " + day3Humid + "%");
-
+    //day4
     day4_date.text(moment().add(4,'days').format("M/D/YY"));
     day4_temp.text("Temp: " + day4Temp + " °F" );
     day4_hum.text("Humidity: " + day4Humid + "%");
-
+    //day5
     day5_date.text(moment().add(5,'days').format("M/D/YY"));
     day5_temp.text("Temp: " + day5Temp + " °F" );
     day5_hum.text("Humidity: " + day5Humid + "%");
