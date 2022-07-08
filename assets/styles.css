@@ -79,16 +79,16 @@ div h2 {
     padding: 1%;
 }
 
-.lowUV {
-
+.low {
+    color: Green;
 }
 
-.mediumUV {
-
+.medium {
+    color: orange;
 }
 
-.highUV {
-
+.high {
+    color: red;
 }
 
 #search-section p {
@@ -99,3 +99,13 @@ div h2 {
 .cities:hover {
     box-shadow: 1px, 1px, black;
 }
+
+#current-outlook {
+    position: relative;
+    align-items: center;
+    left: 45%;
+    bottom: 50%;
+    height: 100px;
+    width: 120px;
+}
+

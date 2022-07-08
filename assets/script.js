@@ -39,6 +39,7 @@ var current_temp = $("#current-temp");
 var current_humidity = $("#current-humidity");
 var current_wind_speed = $("#current-wind-speed");
 var current_UV_index = $("#current-UV-index");
+var current_outlook = $("#current-outlook");
 
 var day1_date = $("#day1-date");
 var day2_date = $("#day2-date");
@@ -58,6 +59,13 @@ var day3_hum = $("#day3-hum");
 var day4_hum = $("#day4-hum");
 var day5_hum = $("#day5-hum");
 
+var day1_outlook = $("#day1-outlook");
+var day2_outlook = $("#day2-outlook");
+var day3_outlook = $("#day3-outlook");
+var day4_outlook = $("#day4-outlook");
+var day5_outlook = $("#day5-outlook");
+
+
 var searchTextID = "";
 
 var urlRequest = "";
@@ -66,6 +74,9 @@ var La = 0;
 var Lo = 0;
 var lat = "";
 var lon = "";
+
+var icon1 = "http://openweathermap.org/img/w/";
+var icon2 = ".png";
 //add user search into request url -> get latitude and longitude ----------
     function getLatLon() {
     searchText = $("#city-search").val();
@@ -105,27 +116,28 @@ function getWeatherInfo(latLon){
         todayHum = data.current.humidity;
         todayWind = data.current.wind_speed;
         todayUV = data.current.uvi;
-        todayOutlook = data.current.weather[0].main;
+        
+        todayOutlook = data.current.weather[0].icon;
         //day1
         day1Temp = Math.round(1.8*(data.daily[0].temp.day-273) + 32);
         day1Humid = data.daily[0].humidity;
-        day1Outlook = data.daily[0].weather[0].main;
+        day1Outlook = data.daily[0].weather[0].icon;
         //day2 
         day2Temp = Math.round(1.8*(data.daily[1].temp.day-273) + 32);
         day2Humid = data.daily[1].humidity;
-        day2Outlook = data.daily[1].weather[0].main;
+        day2Outlook = data.daily[1].weather[0].icon;
         //day3
         day3Temp = Math.round(1.8*(data.daily[2].temp.day-273) + 32);
         day3Humid = data.daily[2].humidity;
-        day3Outlook = data.daily[2].weather[0].main;
+        day3Outlook = data.daily[2].weather[0].icon;
         //day4
         day4Temp = Math.round(1.8*(data.daily[3].temp.day-273) + 32);
         day4Humid = data.daily[3].humidity;
-        day4Outlook = data.daily[3].weather[0].main;
+        day4Outlook = data.daily[3].weather[0].icon;
         //day5
         day5Temp = Math.round(1.8*(data.daily[4].temp.day-273) + 32);
         day5Humid = data.daily[4].humidity;
-        day5Outlook = data.daily[4].weather[0].main;
+        day5Outlook = data.daily[4].weather[0].icon;
         console.log(todayOutlook);
         displayWeather();
     })
@@ -140,93 +152,40 @@ function displayWeather(){
     current_humidity.text("Humidity: " + todayHum + "%");
     current_wind_speed.text("Wind Speed: " + todayWind + " MPH");
     current_UV_index.text("UV Index: " + todayUV);
-    if (todayOutlook == "Clouds"){
-
-    }else if (todayOutlook == "Rain" || "Mist"){
-
-    }else if (todayOutlook == "Clear"){
-
-    }else if (todayOutlook == "snow"){
-
-    }else if (todayOutlook == "Thunderstorm"){
-
+    if(todayUV > 0 && todayUV < 5){
+        current_UV_index.removeClass("low medium high").addClass("low");
+    }else if (todayUV > 4 && todayUV < 8){
+        current_UV_index.removeClass("low medium high").addClass("medium");
+    }else {
+        current_UV_index.removeClass("low medium high").addClass("high");
     }
+    current_outlook.attr("src", icon1 + todayOutlook + icon2);
     //display weather for next 5 days
     //day 1
     day1_date.text(moment().add(1,'days').format("M/D/YY"));
     day1_temp.text("Temp: " + day1Temp + " °F" );
     day1_hum.text("Humidity: " + day1Humid + "%");
-    if (day1Outlook == "Clouds"){
-
-    }else if (day1Outlook == "Rain" || "Mist"){
-
-    }else if (day1Outlook == "Clear"){
-
-    }else if (day1Outlook == "snow"){
-
-    }else if (day1Outlook == "Thunderstorm"){
-        
-    }
+    day1_outlook.attr("src", icon1 + day1Outlook + icon2);
     //day2
     day2_date.text(moment().add(2,'days').format("M/D/YY"));
     day2_temp.text("Temp: " + day2Temp + " °F" );
     day2_hum.text("Humidity: " + day2Humid + "%");
-    if (day2Outlook == "Clouds"){
-
-    }else if (day2Outlook == "Rain" || "Mist"){
-
-    }else if (day2Outlook == "Clear"){
-
-    }else if (day2Outlook == "snow"){
-
-    }else if (day2Outlook == "Thunderstorm"){
-        
-    }
+    day2_outlook.attr("src", icon1 + day2Outlook + icon2);
     //day3
     day3_date.text(moment().add(3,'days').format("M/D/YY"));
     day3_temp.text("Temp: " + day3Temp + " °F" );
     day3_hum.text("Humidity: " + day3Humid + "%");
-    if (day3Outlook == "Clouds"){
-
-    }else if (day3Outlook == "Rain" || "Mist"){
-
-    }else if (day3Outlook == "Clear"){
-
-    }else if (day3Outlook == "snow"){
-
-    }else if (day3Outlook == "Thunderstorm"){
-        
-    }
+    day3_outlook.attr("src", icon1 + day3Outlook + icon2);
     //day4
     day4_date.text(moment().add(4,'days').format("M/D/YY"));
     day4_temp.text("Temp: " + day4Temp + " °F" );
     day4_hum.text("Humidity: " + day4Humid + "%");
-    if (day4Outlook == "Clouds"){
-
-    }else if (day4Outlook == "Rain" || "Mist"){
-
-    }else if (day4Outlook == "Clear"){
-
-    }else if (day4Outlook == "snow"){
-
-    }else if (day4Outlook == "Thunderstorm"){
-        
-    }
+    day4_outlook.attr("src", icon1 + day4Outlook + icon2);
     //day5
     day5_date.text(moment().add(5,'days').format("M/D/YY"));
     day5_temp.text("Temp: " + day5Temp + " °F" );
     day5_hum.text("Humidity: " + day5Humid + "%");
-    if (day5Outlook == "Clouds"){
-
-    }else if (day5Outlook == "Rain" || "Mist"){
-
-    }else if (day5Outlook == "Clear"){
-
-    }else if (day5Outlook == "snow"){
-
-    }else if (day5Outlook == "Thunderstorm"){
-        
-    }
+    day5_outlook.attr("src", icon1 + day5Outlook + icon2);
 }
 
 $(document).on('click','.cities', function(){
